@@ -1,22 +1,25 @@
 // formplode.js
 // Copyright (c) 2013 Jamieson Becker (MIT License like jQuery)
 
-// Scrape a form for values
-//
-// var data = {
-//    name: "Jamieson Becker",
-//    email: "myoldemail@somewhere.com"
-// });
-// $("form .myform").formscrape(data);
-// 
-// Now, the data object has been updated with the name and email address
-// scraped from the .myform form!
-//
-// The only requirement is that the form input fields have matching name=
-// attributes. And, yes, it's really this short! (thx to jQuery!)
-//
-// (note: checkboxes and radios will be converted to JSON true and false)
-// 
+/*
+ *   Scrape a form for values
+ *
+ *   var data = {
+ *      name: "Jamieson Becker",
+ *      email: "myoldemail@somewhere.com"
+ *   });
+ *   $("form .myform").formscrape(data);
+ *   
+ *   Now, the data object has been updated with the name and email address
+ *   scraped from the .myform form!
+ *
+ *   The only requirement is that the form input fields have matching name=
+ *   attributes. And, yes, it's really this short! (thx to jQuery!)
+ *
+ *   (note: checkboxes and radios will be converted to JSON true and false)
+ *
+ */
+  
 
 $.fn.formscrape = function(data) {
     var form = this;
@@ -39,16 +42,19 @@ $.fn.formscrape = function(data) {
 }
 
 
-// Explodes a dictionary of values back onto an HTML form
-//
-// $("form .myform").formplode({
-//    name: "Jamieson Becker",
-//    email: "jamieson@jamiesonbecker.com"
-// });
-//
-// The requirements are that the form input fields have matching name=
-// attributes. Checkboxes and radios should be JSON boolean values (true
-// and false).
+/*
+ *   Explodes a dictionary of values back onto an HTML form
+ *  
+ *   $("form .myform").formplode({
+ *      name: "Jamieson Becker",
+ *      email: "jamieson@jamiesonbecker.com"
+ *   });
+ *  
+ *   The requirements are that the form input fields have matching name=
+ *   attributes. Checkboxes and radios should be JSON boolean values (true
+ *   and false).
+ *
+ */
 
 $.fn.formplode = function(data) {
     var form = this;
