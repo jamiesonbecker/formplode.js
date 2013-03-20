@@ -1,60 +1,54 @@
 formplode.js
 ============
 
-
-Formplode is two simple jQuery plugins that:
-
-
-1.  Scrape an entire form for you and return all the
-    inputs/checkboxes/textareas/radio buttons in a JSON dictionary!
-    No more messing with .val()!
-
-
-2.  Re-populate the same HTML form with the data after loading
-    from the server (doing the right thing with checkboxes
-    and radios!) No more messing with .val()!
+Formplode is a tiny (14 lines!) jQuery plugin that explodes previously-filled out form values back onto an HTML form.  No more messing with .val()!
         
 
+Let's say you have a simple sign-up form:
 
-Scrape a form for values
-------------------------
+    <form id=myform>
+        <label for="name">Name</label>:  <input name=name id=name><br>
+        <label for="address">Address</label>:  <input name=address id=address><br>
+        <label for="city">City</label>:  <input name=city id=city><br>
+        <label for="state">State</label>:  <input name=state id=state><br>
+        <label for="zip">Zip</label>:  <input name=zip id=zip><br>
+        <label for="email">Email</label>:  <input name=email id=email><br>
+        <label for="username">Username</label>:  <input name=username id=username><br>
+    </form>
 
-Here's how to scrape a form for its values and get them back in a nice JSON
-dictionary, with the keys being the "name" attributes for the input/radios/etc,
-and the values being, of course, the values entered on the form.  (Note: unlike
-the horrible HTML defaults, where absence or presence of a "checked" attribute
-indicates false or true, this actually converts checkboxes to boolean
-true/false values!)
+The old way:
 
-    // this is our old data that needs to be updated from the form myform
-
-    var data = {
-       name: "Jamieson Becker",
-       email: "myoldemail@somewhere.com"
+    // form drawn in DOM, now we populate the data for it
+    $.get(..., function(values) {
+        $("#name").val(values["name"]);
+        $("#address").val(values["address"]);
+        $("#city").val(values["city"]);
+        $("#state").val(values["state"]);
+        $("#zip").val(values["zip"]);
+        $("#email").val(values["email"]);
+        $("#username").val(values["username"]);
+        $("#myform").show();
     });
 
-    $("form .myform").formscrape(data);
+The new way with formplode!
 
-
-Now, the data object has been completely updated with the new name and email
-address scraped from the .myform form!
-
-
-
-Explodes a dictionary of values back onto an HTML form
-------------------------------------------------------
-
-
-This simply explodes the same AJAX JSON data back onto the HTML form, no more messing with .val()!
-
-
-    var data = {name: "Jamieson Becker", email: "jamieson@jamiesonbecker.com"}
-    $("form .myform").formplode(data);
+    $.get(..., function(values) {
+        $("#myform").formplode(values).show();
+    });
 
 
 The requirements are simply that the form input fields have matching `name`
-attributes -- that is, that for this form there is a <input name=name> and
-an <input name=email>.
+attributes -- that is, that for this form there is a `<input name=name>` and
+an `<input name=email>`. Id's are no longer required (but useful for `<label>` tags.)
 
-Checkboxes and radios should be JSON boolean values (`true` and `false`).
+Checkboxes or radio values should be provided in the JSON as boolean values (`true` and `false`) (formscrape.js does this.)
+
+
+
+Related
+-------
+
+See [formscrape.js](https://github.com/jamiesonbecker/formscrape.js) for the reverse of this plugin -- scrape the data from the form after the user edits it.
+
+
 
