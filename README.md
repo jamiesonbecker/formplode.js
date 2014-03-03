@@ -45,6 +45,7 @@ an `<input name=email>`. Id's are no longer required (but useful for `<label>` t
 
 Checkboxes or radio values should be provided in the JSON as boolean values (`true` and `false`) (formscrape.js does this.)
 
+NOTE: if using with fillup.js, be sure to specify your stage div; for example, $(".myform", ".stage").formplode(data); Otherwise, you may explode your data onto your off-stage form, which is probably blank. This warning is true with formscrape.js as well.
 
 
 Related
